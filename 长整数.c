@@ -3,7 +3,7 @@
 #include<string.h>
 
 typedef int ListData;
-//Ë«ÏòÑ­»·Á´±í
+//åŒå‘å¾ªç¯é“¾è¡¨
 typedef struct dnode {
 	struct dnode *prior, *next;
 	ListData data;
@@ -13,7 +13,7 @@ typedef DblNode *DblList;
 int minus[2] = {0, 0};
 int len[3];
 
-//ÅĞ¶Ï×Ö·û´®ÊÇ·ñ´¿Êı×Ö×Ö·û´®£¬ÈôÊÇ×ª»»ÎªÕûÊı£¬²¢·µ»Ø¸ÃÊı£»·ñÔò·µ»Ø-1£»
+//åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦çº¯æ•°å­—å­—ç¬¦ä¸²ï¼Œè‹¥æ˜¯è½¬æ¢ä¸ºæ•´æ•°ï¼Œå¹¶è¿”å›è¯¥æ•°ï¼›å¦åˆ™è¿”å›-1ï¼›
 int transfer(char *s) {
 	int num = 0;
 	int len = strlen(s);
@@ -27,7 +27,7 @@ int transfer(char *s) {
 	return num;
 }
 
-//±éÀúÁ´±í£¬isInput ±íÊ¾ÊÇ·ñÊä³öÁ´±íÊı¾İ£¬ type±íÊ¾·ûºÅÀàĞÍ£¨Í¬ºÅ¡¢ÒìºÅ£©
+//éå†é“¾è¡¨ï¼ŒisInput è¡¨ç¤ºæ˜¯å¦è¾“å‡ºé“¾è¡¨æ•°æ®ï¼Œ typeè¡¨ç¤ºç¬¦å·ç±»å‹ï¼ˆåŒå·ã€å¼‚å·ï¼‰
 int listTraverse(DblList first,int type) {
 	int count = 0;
 	DblNode *r = first;
@@ -81,7 +81,7 @@ int listTraverse(DblList first,int type) {
 	return count;
 }
 
-//²åÈë   //place == 0 Ç°²å ;1 ºó²å
+//æ’å…¥   //place == 0 å‰æ’ ;1 åæ’
 int listInsert(DblList first, ListData d, int* len,int place) {
 	DblNode *p = first->prior;
 	DblNode *q = first->next;
@@ -95,7 +95,7 @@ int listInsert(DblList first, ListData d, int* len,int place) {
 			r->next->prior = r;
 			(*len)++;
 		} else
-			printf("·ÖÅä¿Õ¼äÊ§°Ü");
+			printf("åˆ†é…ç©ºé—´å¤±è´¥");
 	} else {
 		if (r) {
 			r->data = d;
@@ -105,12 +105,12 @@ int listInsert(DblList first, ListData d, int* len,int place) {
 			r->prior->next = r;
 			(*len)++;
 		} else
-			printf("·ÖÅä¿Õ¼äÊ§°Ü");
+			printf("åˆ†é…ç©ºé—´å¤±è´¥");
 	}
 	return *len;
 }
 
-//Çå¿ÕÁ´±í
+//æ¸…ç©ºé“¾è¡¨
 void clearList(DblList first,int *len) {
 	DblNode *p, *q = first->next;
 	while (q != first) {
@@ -122,7 +122,7 @@ void clearList(DblList first,int *len) {
 	*len = 0;
 }
 
-//Í¬ºÅÏà¼ÓÔËËã
+//åŒå·ç›¸åŠ è¿ç®—
 int addLong(DblNode *first[2]) {
 	int carry = 0;
 	int minusAns = 0;
@@ -161,7 +161,7 @@ int addLong(DblNode *first[2]) {
 			else
 				first[2]->data += 1;
 		}
-		printf("\n ½á¹ûÊÇ:");
+		printf("\n ç»“æœæ˜¯:");
 		listTraverse(first[2], 1);
 		puts("\n");
 	} else
@@ -169,7 +169,7 @@ int addLong(DblNode *first[2]) {
 
 }
 
-//ÒìºÅÏà¼ÓÔËËã
+//å¼‚å·ç›¸åŠ è¿ç®—
 int subLong(DblNode *first[2]) {
 	int carry = 0;
 	int count = 0;
@@ -275,14 +275,14 @@ int subLong(DblNode *first[2]) {
 		first[2]->data = len[2];
 		if (minusAns)
 			first[2]->data*=-1;
-		printf("\n ½á¹ûÊÇ:");
+		printf("\n ç»“æœæ˜¯:");
 		listTraverse(first[2], -1);
 		puts("\n");
 	} else
 		printf(" error\n");
 }
 
-//×ÜÔËËã
+//æ€»è¿ç®—
 int operation() {
 	int success, count, end = 0;        //    int valid = 0;  int char lastCh;
 	char a[7];
@@ -291,16 +291,16 @@ int operation() {
 	for (int i = 0; i < 3; i++) {
 		first[i] = (DblNode *) malloc(sizeof(DblNode));
 		if (!first[i]) {
-			printf("´æ´¢·ÖÅä´íÎó!\n");
+			printf("å­˜å‚¨åˆ†é…é”™è¯¯!\n");
 			exit(1);
 		} else
 			first[i]->prior = first[i]->next = first[i];
 		len[i] = 0;
 	}
 
-	printf(" ±¾³ÌĞòÊµÏÖÁ½¸öÈÎÒâ³¤ÕûÊıµÄÇóºÍÔËËã\n");
-	printf("\n ÇëÒÀ´ÎÊäÈëÁ½¸ö³¤ÕûÊı\n");
-	printf("\n ÊäÈëĞÎÊ½:Ã¿ËÄÎ»Ò»×é£¬×é¼äÓÃ¶ººÅ¸ô¿ª(Èç1,0001,0001)\n");
+	printf(" æœ¬ç¨‹åºå®ç°ä¸¤ä¸ªä»»æ„é•¿æ•´æ•°çš„æ±‚å’Œè¿ç®—\n");
+	printf("\n è¯·ä¾æ¬¡è¾“å…¥ä¸¤ä¸ªé•¿æ•´æ•°\n");
+	printf("\n è¾“å…¥å½¢å¼:æ¯å››ä½ä¸€ç»„ï¼Œç»„é—´ç”¨é€—å·éš”å¼€(å¦‚1,0001,0001)\n");
 
 	for (int j = 0; j < 2; j++) {
 		do {
@@ -308,7 +308,7 @@ int operation() {
 			minus[j] = 0;
 			count = 0;
 			success = 1;
-			printf("\n ÇëÊäÈëµÚ%d¸ö:", j + 1);
+			printf("\n è¯·è¾“å…¥ç¬¬%dä¸ª:", j + 1);
 			do {
 				count++;
 				if (count == 1) {
@@ -368,7 +368,7 @@ int operation() {
 			} while (!end);
 
 			if (!success) {
-				puts("\n ÊäÈëÓĞÎó£¬ÇëÖØĞÂÊäÈë");
+				puts("\n è¾“å…¥æœ‰è¯¯ï¼Œè¯·é‡æ–°è¾“å…¥");
 				clearList(first[j],&len[j]);
 			}
 		} while (!success);
